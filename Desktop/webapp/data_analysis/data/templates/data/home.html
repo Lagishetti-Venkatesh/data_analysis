@@ -1,0 +1,37 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <header>
+        <nav class="navbar background">
+            <!-- we have used list tag that is ul 
+                 to list the items-->
+            <ul class="nav-list">
+                <img src="{% static '/media/icon.png'  %}" alt="plot issue" class="center" style="width: 10%;"/>
+
+            </ul>
+        <nav class="navbar background">
+        <ul>
+        
+            <a href="{% url 'home' %}"> Home</a>
+            <a href="{% url 'store_files'  %}"> Data</a> 
+            <a href=" {% url 'display'  %}">Plot</a>
+            {{ name.pk }}
+           
+        </nav>
+    </header >
+    {% block content %}
+
+    <h2> Welcome to xVectorLabs..!</h2>
+    {% endblock %}
+</body>
+</html>

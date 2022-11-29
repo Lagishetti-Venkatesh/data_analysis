@@ -1,0 +1,81 @@
+{%  extends 'data/home.html'  %}
+{% load static %} 
+<style>
+  .center {
+  display: block;
+  margin: left 50px; ;
+  margin-right: 500px;
+}
+</style>
+
+
+{% block content %}
+
+<h1> This is visualization block</h1>
+<form method="POST" enctype="multipart/form-data">
+  
+  {% csrf_token %}
+    <label for="cars">Choose a dataset:</label>
+
+    <select name="file" id="files">
+        {% for file in uploaded_files %}
+      <option value=" {{ file }}">{{ file }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="column">Choose a column:</label>
+
+    <select name="columns" id="column">
+        {% for col in columns %}
+      <option value=" {{ col }}">{{ col }}</option>
+        {% endfor %}
+    </select>
+    
+    <label name="compute"></label>
+    <select name="operation"  >
+        <option name="max"> MAX</option>
+        <option name="min"> MIN</option>
+        <option name="sum"> SUM</option>
+    </select>
+    <button type="submit"> compute </button>
+
+</form>
+
+
+
+<label name="operation" align="right"> {{ computedval }}</label>
+
+<form method="GET" enctype="multipart/form-data">
+  
+  {% csrf_token %}
+  
+    <label for="file">Choose a dataset:</label>
+    <select name="file" id="files">
+      {% for file in uploaded_files %}
+          <option value="{{ file }}">{{ file }}</option>
+      {% endfor %}
+    </select>
+
+
+    <label for="column1">Choose a column:</label>
+    <select name="column1" id="column">
+      {% for col in columns %}
+          <option value="{{ col }}">{{ col }}</option>
+      {% endfor %}
+    </select>
+
+
+    <label for="column2">Choose a column:</label>
+    <select name="column2" id="column">
+      {% for col in columns %}
+          <option value="{{ col }}">{{ col }}</option>
+      {% endfor %}
+    </select>
+
+<button type="submit"> plot</button>
+</form>
+
+{% if path|length  %}
+  <img src='{% static "/media/plot1.png" %}' alt="plot issue" class="center" style="width: 50%;"/>
+{% endif %}
+{% endblock content %}

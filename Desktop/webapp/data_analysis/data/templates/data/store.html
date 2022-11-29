@@ -1,0 +1,36 @@
+{% extends 'data/home.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h3 align="center"> This is Uploaded Data page</h3>
+<table align="center">
+  <caption style="width: 100px;" align="center"> Uploaded Files </caption>
+  
+  <colgroup>
+          <col span="10"   style="background: orange"/>
+  </colgroup>
+  <thead>
+  <tr>
+      <th scope="col">  File Name  </th> 
+  </tr>
+  </thead>
+  <tbody>
+    {% for file in uploaded_files %}
+    <tr>
+        <th scope="row"> {{ file }}</th>
+    </tr>
+
+    {% endfor %}
+
+  </tbody>
+</table>
+<form method="POST", enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  
+  <button type="submit" id="upload">Upload</button>
+</form>
+<label>{{ alert }}</label>
+{% endblock content %}
